@@ -1,11 +1,10 @@
 import React from 'react'
-const Case = React.lazy(() => import('./Case'))
+const Cell = React.lazy(() => import('./Cell'))
 
 function Grid(props) {
-console.log(props.grid)
 const listItems = props.grid.map((number, i) => {
 	return <div key={number}  className="board-row">
-		<Case value={number} x={i} onClick={props.onClick}/>
+		<Cell value={number} x={i} onClick={props.onClick}/>
 	</div>
 });
 

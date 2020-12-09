@@ -1,6 +1,6 @@
 import cx from 'classnames'
 
-function Grid(props) {
+function Cell(props) {
 
 const listItems = props.value.map((number, i) => {
 	return <button
@@ -18,4 +18,4 @@ const listItems = props.value.map((number, i) => {
   );
 }
 
-export default Grid
+export default Cell
