@@ -2,29 +2,27 @@ import React from "react";
 import cx from "classnames";
 import Grid from "./Grid";
 
-
- /*shuffle flat array and create 2D matrix*/
-  function createArray() {
-    const copy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"];
-    let j, x, i;
-    for (i = copy.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = copy[i];
-      copy[i] = copy[j];
-      copy[j] = x;
-    }
-
-    let array = [[], [], [], []];
-    let split = 0;
-    for (let k in copy) {
-      array[split].push(copy[k]);
-      split++;
-      if (split >= 4) split = 0;
-    }
-
-    return array;
+/*shuffle flat array and create 2D matrix*/
+function createArray() {
+  const copy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"];
+  let j, x, i;
+  for (i = copy.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = copy[i];
+    copy[i] = copy[j];
+    copy[j] = x;
   }
 
+  let array = [[], [], [], []];
+  let split = 0;
+  for (let k in copy) {
+    array[split].push(copy[k]);
+    split++;
+    if (split >= 4) split = 0;
+  }
+
+  return array;
+}
 
 class TaquinGame extends React.Component {
   constructor(props) {
@@ -33,10 +31,8 @@ class TaquinGame extends React.Component {
       win: false,
       tab: createArray(),
     };
-   this.move = this.move.bind(this);
+    this.move = this.move.bind(this);
   }
-
- 
 
   checkwin(array) {
     array = array.flat();
@@ -52,9 +48,9 @@ class TaquinGame extends React.Component {
   }
 
   move(number, x, y) {
-  	if (this.state.win || number === "X") return; // if already win or click on blank cell
-  	let newpos = this.checkmove(x, y);
-  	if (!newpos) return // if false we can't move
+    if (this.state.win || number === "X") return; // if already win or click on blank cell
+    let newpos = this.checkmove(x, y);
+    if (!newpos) return; // if false we can't move
     const copy = [...this.state.tab];
     copy[x][y] = "X";
     copy[newpos.x][newpos.y] = number;
@@ -66,7 +62,6 @@ class TaquinGame extends React.Component {
 
   // return blank position or false
   checkmove(x, y) {
-    
     if (
       this.state.tab[x + 1] &&
       this.state.tab[x + 1][y] &&
@@ -78,11 +73,11 @@ class TaquinGame extends React.Component {
       this.state.tab[x - 1][y] &&
       this.state.tab[x - 1][y] === "X"
     ) {
-      return { x: x - 1, y: y }
+      return { x: x - 1, y: y };
     } else if (this.state.tab[x][y + 1] && this.state.tab[x][y + 1] === "X") {
-      return { x: x, y: y+1 }
+      return { x: x, y: y + 1 };
     } else if (this.state.tab[x][y - 1] && this.state.tab[x][y - 1] === "X") {
-      return { x: x, y: y-1 }
+      return { x: x, y: y - 1 };
     } else {
       return false;
     }
@@ -91,9 +86,7 @@ class TaquinGame extends React.Component {
   render() {
     return (
       <div>
-        <p className={cx("win", { hidden: !this.state.win})}>
-          GG you win =)
-        </p>
+        <p className={cx("win", { hidden: !this.state.win })}>GG you win =)</p>
         <Grid gamestade={this.state.tab} onCellClick={this.move} />
       </div>
     );
