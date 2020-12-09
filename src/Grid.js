@@ -1,10 +1,10 @@
 import Cell from "./Cell";
 
 function Grid(props) {
-  const listItems = props.tab.map((number, i) => {
+  const listItems = props.gamestade.map((number, i) => {
     return (
       <div key={number} className="board-row">
-        <Cell value={number} x={i} onClick={props.onClick} />
+        <Cell value={number} x={i} onCellClick={props.onCellClick} />
       </div>
     );
   });

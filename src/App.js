@@ -1,10 +1,10 @@
 import './App.css'
-import GameManager from "./GameManager";
+import TaquinGame from "./TaquinGame";
 
 function App() {
   return (
     <div className="App">
-      <GameManager/>
+      <TaquinGame/>
     </div>
   );
 }

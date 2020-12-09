@@ -1,21 +1,11 @@
 import React, { Suspense } from "react";
 import cx from "classnames";
-const Grid = React.lazy(() => import("./Grid"));
+import Grid from "./Grid";
 
-/* X is for display when i put null that broke css then X = blank case*/
-class GameManager extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      win: false,
-      tab: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"],
-    };
-    this.checkmove = this.checkmove.bind(this);
-  }
 
-  /*shuffle array and create 2D matrix*/
-  createArray() {
-    const copy = [...this.state.tab];
+ /*shuffle array and create 2D matrix*/
+  function createArray() {
+    const copy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"];
     let j, x, i;
     for (i = copy.length - 1; i > 0; i--) {
       j = Math.floor(Math.random() * (i + 1));
@@ -32,10 +22,21 @@ class GameManager extends React.Component {
       if (split >= 4) split = 0;
     }
 
-    this.setState({
-      tab: array,
-    });
+    return array;
   }
+
+/* X is for display when i put null that broke css then X = blank case*/
+class TaquinGame extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      win: false,
+      tab: createArray(),
+    };
+   this.move = this.move.bind(this);
+  }
+
+ 
 
   checkwin(array) {
     array = array.flat();
@@ -50,10 +51,12 @@ class GameManager extends React.Component {
     });
   }
 
-  move(old, newpos) {
+  move(number, x, y) {
+  	if (this.state.win || number === "X") return;
+  	let newpos = this.checkmove(x, y);
     const copy = [...this.state.tab];
-    copy[old.x][old.y] = "X";
-    copy[newpos.x][newpos.y] = old.number;
+    copy[x][y] = "X";
+    copy[newpos.x][newpos.y] = number;
     this.setState({
       tab: copy,
     });
@@ -61,42 +64,39 @@ class GameManager extends React.Component {
   }
 
   // ici check si il peu move et si oui move
-  checkmove(number, x, y) {
-    if (this.state.win) return;
+  checkmove(x, y) {
+    
     if (
       this.state.tab[x + 1] &&
       this.state.tab[x + 1][y] &&
       this.state.tab[x + 1][y] === "X"
     ) {
-      this.move({ x: x, y: y, number: number }, { x: x + 1, y: y });
+      return { x: x + 1, y: y };
     } else if (
       this.state.tab[x - 1] &&
       this.state.tab[x - 1][y] &&
       this.state.tab[x - 1][y] === "X"
     ) {
-      this.move({ x: x, y: y, number: number }, { x: x - 1, y: y });
+      return { x: x - 1, y: y }
     } else if (this.state.tab[x][y + 1] && this.state.tab[x][y + 1] === "X") {
-      this.move({ x: x, y: y, number: number }, { x: x, y: y + 1 });
+      return { x: x, y: y+1 }
     } else if (this.state.tab[x][y - 1] && this.state.tab[x][y - 1] === "X") {
-      this.move({ x: x, y: y, number: number }, { x: x, y: y - 1 });
+      return { x: x, y: y-1 }
     } else {
-      //maybee display error message when can't move
+      return false;
     }
-  }
-
-  componentDidMount() {
-    this.createArray();
   }
 
   render() {
     return (
-      <Suspense fallback={<div>Chargement...</div>}>
-        <p className={cx("win", { hidden: this.state.win})}>
+      <div>
+        <p className={cx("win", { hidden: !this.state.win})}>
           GG you win =)
         </p>
-        <Grid tab={this.state.tab} onClick={this.checkmove} />
-      </Suspense>
+        <Grid gamestade={this.state.tab} onCellClick={this.move} />
+      </div>
     );
   }
 }
-export default GameManager;
+
+export default TaquinGame;

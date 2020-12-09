@@ -6,7 +6,7 @@ function Cell(props) {
       <button
         key={number}
         className={cx("square", { whithe: number === "X" ? true : false })}
-        onClick={() => props.onClick(number, props.x, i)}
+        onClick={() => props.onCellClick(number, props.x, i)}
       >
         {number}
       </button>
