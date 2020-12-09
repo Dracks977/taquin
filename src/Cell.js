@@ -5,7 +5,7 @@ function Cell({column, x, onCellClick}) {
     return (
       <button
         key={number}
-        className={cx("square", { whithe: number === "X" ? true : false })}
+        className={cx("square", { white: number === "X" ? true : false })}
         onClick={() => onCellClick(number, x, i)}
       >
         {number}
