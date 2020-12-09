@@ -1,6 +1,6 @@
 import cx from "classnames";
 
-function Cell({column, x, onCellClick}) {
+function Cell({ column, x, onCellClick }) {
   const listItems = column.map((number, i) => {
     return (
       <button
