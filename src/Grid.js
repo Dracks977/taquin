@@ -1,17 +1,14 @@
 import React from 'react'
 const Cell = React.lazy(() => import('./Cell'))
 
-function Grid(props) {
-const listItems = props.grid.map((number, i) => {
-	return <div key={number}  className="board-row">
-		<Cell value={number} x={i} onClick={props.onClick}/>
-	</div>
-});
-
-
+function Grid({ grid, onClick }) {
   return (
      <div className="bord">
-   		{listItems}
+   		{[...Array(4).keys()].map((number, yPos) => {
+	return <div key={number}  className="board-row">
+		{[...Array(4).keys()].map((number, xPos) => (<Cell value={grid[yPos][xPos]} onClick={() => onClick(xPos, yPos)}/>)}
+	</div>
+})}
     </div>
   );
 }
