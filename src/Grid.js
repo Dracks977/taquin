@@ -1,6 +1,6 @@
 import Cell from "./Cell";
 
-function Grid({gamestade, onCellClick}) {
+function Grid({ gamestade, onCellClick }) {
   const listItems = gamestade.map((number, i) => {
     return (
       <div key={number} className="board-row">
