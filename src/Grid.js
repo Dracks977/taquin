@@ -1,5 +1,4 @@
-import React from "react";
-const Cell = React.lazy(() => import("./Cell"));
+import Cell from "./Cell";
 
 function Grid(props) {
   const listItems = props.tab.map((number, i) => {

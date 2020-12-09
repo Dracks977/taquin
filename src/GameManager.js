@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import cx from "classnames";
 const Grid = React.lazy(() => import("./Grid"));
 
