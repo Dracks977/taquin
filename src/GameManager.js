@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import cx from "classnames";
 const Grid = React.lazy(() => import("./Grid"));
 
@@ -91,7 +91,7 @@ class GameManager extends React.Component {
   render() {
     return (
       <Suspense fallback={<div>Chargement...</div>}>
-        <p className={cx("win", { hidden: !this.state.win ? true : false })}>
+        <p className={cx("win", { hidden: this.state.win})}>
           GG you win =)
         </p>
         <Grid tab={this.state.tab} onClick={this.checkmove} />
