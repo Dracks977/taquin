@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import cx from "classnames";
 import Grid from "./Grid";
 
@@ -52,8 +52,9 @@ class TaquinGame extends React.Component {
   }
 
   move(number, x, y) {
-  	if (this.state.win || number === "X") return;
+  	if (this.state.win || number === "X") return; // if already win or click on blank cell
   	let newpos = this.checkmove(x, y);
+  	if (!newpos) return // if false we can't move
     const copy = [...this.state.tab];
     copy[x][y] = "X";
     copy[newpos.x][newpos.y] = number;
@@ -63,7 +64,7 @@ class TaquinGame extends React.Component {
     this.checkwin(copy);
   }
 
-  // ici check si il peu move et si oui move
+  // return blank position or false
   checkmove(x, y) {
     
     if (
