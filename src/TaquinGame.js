@@ -3,7 +3,7 @@ import cx from "classnames";
 import Grid from "./Grid";
 
 
- /*shuffle array and create 2D matrix*/
+ /*shuffle flat array and create 2D matrix*/
   function createArray() {
     const copy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"];
     let j, x, i;
@@ -25,7 +25,7 @@ import Grid from "./Grid";
     return array;
   }
 
-/* X is for display when i put null that broke css then X = blank case*/
+
 class TaquinGame extends React.Component {
   constructor(props) {
     super(props);
