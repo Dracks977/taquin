@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 const Case = React.lazy(() => import('./Case'));
 
 function Grid(props) {

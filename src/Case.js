@@ -1,4 +1,3 @@
-import React, { Suspense } from 'react';
 import cx from 'classnames';
 
 function Grid(props) {

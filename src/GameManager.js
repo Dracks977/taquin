@@ -72,7 +72,7 @@ class GameManager extends React.Component {
 		} else if (this.state.tab[x][y-1] && this.state.tab[x][y-1] === "X") {
 			this.move({x: x, y:y, number: number}, {x: x, y:y-1})
 		} else {
-			//maybee display error message
+			//maybee display error message when can't move
 		}
 	}
 
