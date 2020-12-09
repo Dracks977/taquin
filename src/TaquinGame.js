@@ -2,28 +2,6 @@ import React from "react";
 import cx from "classnames";
 import Grid from "./Grid";
 
-/*shuffle flat array and create 2D matrix*/
-function createArray() {
-  const copy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"];
-  let j, x, i;
-  for (i = copy.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1));
-    x = copy[i];
-    copy[i] = copy[j];
-    copy[j] = x;
-  }
-
-  let array = [[], [], [], []];
-  let split = 0;
-  for (let k in copy) {
-    array[split].push(copy[k]);
-    split++;
-    if (split >= 4) split = 0;
-  }
-
-  return array;
-}
-
 class TaquinGame extends React.Component {
   constructor(props) {
     super(props);
@@ -91,6 +69,28 @@ class TaquinGame extends React.Component {
       </div>
     );
   }
+}
+
+/*shuffle flat array and create 2D matrix*/
+function createArray() {
+  const copy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "X"];
+  let j, x, i;
+  for (i = copy.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = copy[i];
+    copy[i] = copy[j];
+    copy[j] = x;
+  }
+
+  let array = [[], [], [], []];
+  let split = 0;
+  for (let k in copy) {
+    array[split].push(copy[k]);
+    split++;
+    if (split >= 4) split = 0;
+  }
+
+  return array;
 }
 
 export default TaquinGame;
