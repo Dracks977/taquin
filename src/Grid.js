@@ -4,9 +4,9 @@ const Cell = React.lazy(() => import('./Cell'))
 function Grid({ grid }) {
   return (
      <div className="bord">
-   		{grid.map((number, xPos) => {
+   		{[...Array(4).keys().map((number, yPos) => {
 	return <div key={number}  className="board-row">
-		{[...Array(3).keys()].map((number, yPos) => (<Cell value={number} onClick={() => props.onClick(xPos, yPos)}/>)}
+		{[...Array(4).keys()].map((number, xPos) => (<Cell value={grid[yPos][xPos]} onClick={() => props.onClick(xPos, yPos)}/>)}
 	</div>
 })}
     </div>
