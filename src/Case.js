@@ -1,4 +1,4 @@
-import cx from 'classnames';
+import cx from 'classnames'
 
 function Grid(props) {
 
@@ -18,4 +18,4 @@ const listItems = props.value.map((number, i) => {
   );
 }
 
-export default Grid;
+export default Grid

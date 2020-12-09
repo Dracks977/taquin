@@ -1,6 +1,6 @@
-import './App.css';
-import React, { Suspense } from 'react';
-const GameManager = React.lazy(() => import('./GameManager'));
+import './App.css'
+import React, { Suspense } from 'react'
+const GameManager = React.lazy(() => import('./GameManager'))
 
 function App() {
   return (
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

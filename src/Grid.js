@@ -1,5 +1,5 @@
-import React from 'react';
-const Case = React.lazy(() => import('./Case'));
+import React from 'react'
+const Case = React.lazy(() => import('./Case'))
 
 function Grid(props) {
 console.log(props.grid)
@@ -17,4 +17,4 @@ const listItems = props.grid.map((number, i) => {
   );
 }
 
-export default Grid;
+export default Grid

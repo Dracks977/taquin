@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
-import cx from 'classnames';
-const Grid = React.lazy(() => import('./Grid'));
+import React, { Suspense } from 'react'
+import cx from 'classnames'
+const Grid = React.lazy(() => import('./Grid'))
 
 /* X is for display when i put null that broke css then X = blank case*/
 class GameManager extends React.Component {
@@ -89,4 +89,4 @@ class GameManager extends React.Component {
 			);
 		}
 	}
-	export default GameManager;
+	export default GameManager
